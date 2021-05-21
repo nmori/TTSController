@@ -206,7 +206,32 @@ namespace Speech
             return _talker.ToneScale / 50f;
         }
 
-
+        /// <summary>
+        /// 声色を設定します
+        /// </summary>
+        /// <param name="Name">パラメータ名</param>
+        /// <param name="value">0～100</param>
+        public void SetVoiceParam(string Name, uint value)
+        {
+            if (value > 100)
+            {
+                value = 100;
+            }
+            else if (value < 0)
+            {
+                value = 0;
+            }
+            _talker.Components.ByName(Name).Value = (uint)(value);
+        }
+        /// <summary>
+        /// 声色を取得します
+        /// </summary>
+        /// <param name="Name">パラメータ名</param>
+        /// <returns>パラメータ値</returns>
+        public uint GetVoiceParam(string Name)
+        {
+            return _talker.Components.ByName(Name).Value;
+        }
         #region IDisposable Support
         private bool disposedValue = false;
 
